@@ -3,7 +3,11 @@ package model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Venda extends DefaultEntity<Venda> {
@@ -16,10 +20,15 @@ public class Venda extends DefaultEntity<Venda> {
 
 	private double totalVenda;
 
+	@ManyToOne
+	@JoinColumn(name="idcliente")
 	private Cliente cliente;
 
+	@ManyToOne
+	@JoinColumn(name="idfuncionario")
 	private Funcionario funcionario;
 
+	@OneToMany(mappedBy="venda", cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<ItemVenda> itemVenda;
 
 	public Date getData() {

@@ -1,6 +1,9 @@
 package model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Fornecedor extends DefaultEntity<Fornecedor> {
@@ -11,6 +14,8 @@ public class Fornecedor extends DefaultEntity<Fornecedor> {
 
 	private String observacao;
 
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="idpessoajuridica", unique=true)
 	private PessoaJuridica pessoaJuridica;
 
 	public String getContato() {

@@ -1,6 +1,9 @@
 package model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Funcionario extends DefaultEntity<Funcionario> {
@@ -13,6 +16,8 @@ public class Funcionario extends DefaultEntity<Funcionario> {
 
 	private String departamento;
 
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="idpessoafisica", unique=true)
 	private PessoaFisica pessoaFisica;
 
 	public String getLogin() {

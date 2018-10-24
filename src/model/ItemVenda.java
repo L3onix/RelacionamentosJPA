@@ -1,6 +1,8 @@
 package model;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class ItemVenda extends DefaultEntity<ItemVenda> {
@@ -12,7 +14,13 @@ public class ItemVenda extends DefaultEntity<ItemVenda> {
 	private double preco;
 
 	private double desconto;
+	
+	@ManyToOne
+	@JoinColumn(name="idvenda")
+	private Venda venda;
 
+	@ManyToOne
+	@JoinColumn(name="idproduto")
 	private Produto produto;
 
 	public int getQuantidade() {
@@ -47,4 +55,12 @@ public class ItemVenda extends DefaultEntity<ItemVenda> {
 		this.produto = produto;
 	}
 
+	public Venda getVenda() {
+		return venda;
+	}
+
+	public void setVenda(Venda venda) {
+		this.venda = venda;
+	}
+	
 }

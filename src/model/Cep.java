@@ -1,6 +1,8 @@
 package model;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Cep extends DefaultEntity<Cep> {
@@ -13,6 +15,8 @@ public class Cep extends DefaultEntity<Cep> {
 	
 	private String logradouro;
 	
+	@ManyToOne
+	@JoinColumn(name="idmunicipio")
 	private Municipio municipio;
 
 	public String getCep() {

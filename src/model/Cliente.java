@@ -1,6 +1,13 @@
 package model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cliente extends DefaultEntity<Cliente> {
@@ -9,7 +16,16 @@ public class Cliente extends DefaultEntity<Cliente> {
 
 	private String profissao;
 
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="idpessoa", unique=true)
 	private Pessoa pessoa;
+	
+	@ManyToMany
+	@JoinTable(name="ClienteProduto", 
+			joinColumns=  @JoinColumn(name="idcliente"),
+			inverseJoinColumns= @JoinColumn(name="idproduto") )
+	private List<Produto> listaDesejo;
+	
 
 	public String getProfissao() {
 		return profissao;
@@ -25,6 +41,14 @@ public class Cliente extends DefaultEntity<Cliente> {
 
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
+	}
+
+	public List<Produto> getListaDesejo() {
+		return listaDesejo;
+	}
+
+	public void setListaDesejo(List<Produto> listaDesejo) {
+		this.listaDesejo = listaDesejo;
 	}
 
 }

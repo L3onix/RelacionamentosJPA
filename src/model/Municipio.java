@@ -1,6 +1,8 @@
 package model;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Municipio extends DefaultEntity<Municipio> {
@@ -9,6 +11,8 @@ public class Municipio extends DefaultEntity<Municipio> {
 
 	private String nome;
 
+	@ManyToOne
+	@JoinColumn(name="idestado")
 	private Estado estado;
 
 	public String getNome() {
